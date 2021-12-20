@@ -1,0 +1,1 @@
+const junior= 'junior'
