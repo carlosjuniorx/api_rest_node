@@ -4,7 +4,7 @@ import userController from '../controllers/UserController'
 
 const router = new Router()
 
-router.post('/', userController.store)
+router.post('/', loginRequired,userController.store)
 router.put('/:id',loginRequired, userController.update)
 router.delete('/:id',loginRequired, userController.delete)
 

@@ -12,12 +12,18 @@ class FotoController {
           errors: [error.code],
         })
       }
-      const {originalname, filename} = req.file
-      const {aluno_id} = req.body
-      console.log('Este é o ID do aluno: '+aluno_id)
-      const foto = await Foto.create({originalname, filename, aluno_id})
+      try {
+        const {aluno_id} = req.body
+        const {originalname, filename} = req.file
+        console.log('Este é o ID do aluno: '+aluno_id)
+        const foto = await Foto.create({originalname, filename, aluno_id})
 
-      return res.json(foto)
+        return res.json(foto)
+      } catch (error) {
+        return res.status(400).json({
+          erros:['Aluno inexistente']
+        })
+      }
     })
   }
 }
